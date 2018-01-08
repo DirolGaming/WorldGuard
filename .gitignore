@@ -15,3 +15,7 @@
 /.gradle
 **/build
 
+
+worldguard-legacy/out/production/classes/com/sk89q/worldguard/bukkit/WorldGuardPlugin\$1\.class
+
+worldguard-legacy/out/production/classes/com/sk89q/worldguard/session/

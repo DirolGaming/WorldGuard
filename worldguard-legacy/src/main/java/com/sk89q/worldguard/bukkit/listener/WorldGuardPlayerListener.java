@@ -281,9 +281,9 @@ public class WorldGuardPlayerListener implements Listener {
                         }
                     }
 
-                    player.sendMessage(ChatColor.YELLOW + "Applicable regions: " + str.toString());
+                    player.sendMessage(ChatColor.YELLOW + "Saadaval olevad alad: " + str.toString());
                 } else {
-                    player.sendMessage(ChatColor.YELLOW + "WorldGuard: No defined regions here!");
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&2&lVMC&8] &7Te ei ole ühelgil alal"));
                 }
 
                 event.setCancelled(true);
@@ -374,7 +374,7 @@ public class WorldGuardPlayerListener implements Listener {
                 if (!plugin.getGlobalRegionManager().hasBypass(localPlayer, world)
                         && !(set.allows(DefaultFlag.ENDERPEARL, localPlayer)
                                 && setFrom.allows(DefaultFlag.ENDERPEARL, localPlayer))) {
-                    player.sendMessage(ChatColor.DARK_RED + "You're not allowed to go there.");
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&2&lVMC&8] &7Teil ei ole luba, et sinna minna."));
                     event.setCancelled(true);
                     return;
                 }
@@ -433,7 +433,7 @@ public class WorldGuardPlayerListener implements Listener {
             if (mgr == null) return;
             ApplicableRegionSet set = mgr.getApplicableRegions(check);
             if (!set.testState(plugin.wrapPlayer(event.getPlayer()), DefaultFlag.BUILD)) {
-                event.getPlayer().sendMessage(ChatColor.RED + "Destination is in a protected area.");
+                event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&2&lVMC&8] &7Teil pole veel luba antud alale sisenemiseks."));
                 event.setCancelled(true);
                 return;
             }
@@ -456,7 +456,7 @@ public class WorldGuardPlayerListener implements Listener {
             CommandFilter test = new CommandFilter(allowedCommands, blockedCommands);
 
             if (!test.apply(event.getMessage())) {
-                player.sendMessage(ChatColor.RED + event.getMessage() + " is not allowed in this area.");
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&2&lVMC&8] &7Teil ei ole luba antud alal seda teha."));
                 event.setCancelled(true);
                 return;
             }
@@ -464,7 +464,7 @@ public class WorldGuardPlayerListener implements Listener {
 
         if (cfg.blockInGameOp) {
             if (opPattern.matcher(event.getMessage()).matches()) {
-                player.sendMessage(ChatColor.RED + "/op can only be used in console (as set by a WG setting).");
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&2&lVMC&8] &7See käsklus on keelatud ja on lubatud vaid konsoolis."));
                 event.setCancelled(true);
                 return;
             }
