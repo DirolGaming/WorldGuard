@@ -84,8 +84,7 @@ public class BlockedPotionsListener extends AbstractListener {
                         if (getPlugin().hasPermission(player, "worldguard.override.potions")) {
                             return;
                         }
-                        player.sendMessage(ChatColor.RED + "Sorry, arrows with "
-                                + blockedEffect.getName() + " are presently disabled.");
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&2&lVMC&8] &7Vabandame, antud nooled selliste võimetega on hetkel keelatud."));
                     }
                     event.setCancelled(true);
                 }
@@ -154,15 +153,11 @@ public class BlockedPotionsListener extends AbstractListener {
                         }
                         isSplash |= (oldPotions && (Potion.fromItemStack(item).isSplash()));
                         if (isSplash && wcfg.blockPotionsAlways) {
-                            player.sendMessage(ChatColor.RED + "Sorry, potions with " +
-                                    blockedEffect.getName() + " can't be thrown, " +
-                                    "even if you have a permission to bypass it, " +
-                                    "due to limitations (and because overly-reliable potion blocking is on).");
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&2&lVMC&8] &7Vabandame, antud võlujooke ja asju ei saa visata."));
                             event.setCancelled(true);
                         }
                     } else {
-                        player.sendMessage(ChatColor.RED + "Sorry, potions with "
-                                + blockedEffect.getName() + " are presently disabled.");
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&2&lVMC&8] &7Vabandame, antud võlujoogid selliste võimetega on keelatud."));
                         event.setCancelled(true);
                     }
                 } else {
