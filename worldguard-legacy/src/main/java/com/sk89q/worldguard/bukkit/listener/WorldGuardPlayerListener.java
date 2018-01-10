@@ -186,8 +186,8 @@ public class WorldGuardPlayerListener implements Listener {
             if (!hostname.equals(hostKey)
                     && !(cfg.hostKeysAllowFMLClients && hostname.equals(hostKey + "\u0000FML\u0000"))) {
                 event.disallow(PlayerLoginEvent.Result.KICK_OTHER,
-                        "You did not join with the valid host key!");
-                log.warning("WorldGuard host key check: " +
+                        "Teie võti ei ole sama.");
+                log.warning("WorldGuard host võtme kontroll: " +
                         player.getName() + " joined with '" + hostname +
                         "' but '" + hostKey + "' was expected. Kicked!");
                 return;
@@ -257,7 +257,7 @@ public class WorldGuardPlayerListener implements Listener {
                 ItemStack heldItem = player.getInventory().getItem(slot);
                 if (heldItem != null && heldItem.getAmount() < 0) {
                     player.getInventory().setItem(slot, null);
-                    player.sendMessage(ChatColor.RED + "Infinite stack in slot #" + slot + " removed.");
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&2&lVMC&8] &7Eemaldatud esemed alalt."));
                 }
             }
         }
@@ -270,8 +270,8 @@ public class WorldGuardPlayerListener implements Listener {
 
             if (item != null && item.getTypeId() == wcfg.regionWand && plugin.hasPermission(player, "worldguard.region.wand")) {
                 if (set.size() > 0) {
-                    player.sendMessage(ChatColor.YELLOW + "Can you build? "
-                            + (set.canBuild(localPlayer) ? "Yes" : "No"));
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&2&lVMC&8] &7Saad sa ehitada?"
+                            + (set.canBuild(localPlayer) ? "Jah" : "Ei")));
 
                     StringBuilder str = new StringBuilder();
                     for (Iterator<ProtectedRegion> it = set.iterator(); it.hasNext();) {
@@ -385,8 +385,7 @@ public class WorldGuardPlayerListener implements Listener {
                         boolean allowFrom = setFrom.allows(DefaultFlag.CHORUS_TELEPORT, localPlayer);
                         boolean allowTo = set.allows(DefaultFlag.CHORUS_TELEPORT, localPlayer);
                         if (!allowFrom || !allowTo) {
-                            player.sendMessage(ChatColor.DARK_RED + "You're not allowed to teleport " +
-                                    (!allowFrom ? "from here." : "there."));
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&2&lVMC&8] &7Teil ei ole luba teleportida sinna."));
                             event.setCancelled(true);
                             return;
                         }
